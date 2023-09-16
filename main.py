@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser.setGeometry(QtCore.QRect(150, 180, 401, 192))
         self.textBrowser.setObjectName("textBrowser")
-
+        
 
         #indir butonu 
         self.indir = QtWidgets.QPushButton(self.centralwidget)
@@ -51,7 +51,7 @@ class Ui_MainWindow(object):
         self.onizle = QtWidgets.QPushButton(self.centralwidget)
         self.onizle.setGeometry(QtCore.QRect(280, 90, 151, 51))
         self.onizle.setObjectName("onizle")
-        self.onilze.clicked.connect(self.onizleclicked)
+        self.onizle.clicked.connect(self.onizleclicked)
         
         #nereye kaydediceğini seçme işareti
         self.konumolsunmu = QtWidgets.QCheckBox(self.centralwidget)
@@ -84,12 +84,29 @@ class Ui_MainWindow(object):
             
             youtubeObject.download(output_path = file_path)
             print("Video başarıyla indirildi")    
+            # QTextBrowser'a "Merhaba" yazdırma
+
+
+
+
+
+
+
         except:
             print("bir sorun oldu yeniden dene")
         
-        
+
     def onizleclicked(self):
         print("devam edecek")
+        
+        
+        link = self.linkyeri.text()
+        youtubeObject = YouTube(link)
+        caption = youtubeObject.captions.get_by_language_code('en')
+
+        print(caption)
+        #self.textBrowser.setText(caption)
+        
 
     
     
